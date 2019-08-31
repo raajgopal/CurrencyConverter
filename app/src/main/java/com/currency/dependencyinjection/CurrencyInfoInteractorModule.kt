@@ -1,7 +1,7 @@
 package com.currency.dependencyinjection
 
 import com.currency.interactor.CurrencyInfoInteractor
-import com.currency.respository.NetworkRepository
+import com.currency.repository.NetworkRepository
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton

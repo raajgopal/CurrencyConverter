@@ -1,7 +1,7 @@
 package com.currency.interactor
 
 import com.currency.entities.CurrencyValueResponse
-import com.currency.respository.NetworkRepository
+import com.currency.repository.NetworkRepository
 import io.reactivex.Single
 import javax.inject.Inject
 

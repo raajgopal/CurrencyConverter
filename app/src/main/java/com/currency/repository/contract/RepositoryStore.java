@@ -1,4 +1,4 @@
-package com.currency.respository.contract;
+package com.currency.repository.contract;
 
 import com.currency.entities.CurrencyValueResponse;
 import io.reactivex.Single;

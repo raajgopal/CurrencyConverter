@@ -1,4 +1,4 @@
-package com.currency.respository
+package com.currency.repository
 
 import com.currency.entities.CurrencyValueResponse
 import io.reactivex.Single

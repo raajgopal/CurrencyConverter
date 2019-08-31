@@ -1,8 +1,8 @@
 package com.currency.dependencyinjection
 
 import com.currency.network.service.NetworkClientService
-import com.currency.respository.ApiStore
-import com.currency.respository.NetworkRepository
+import com.currency.repository.ApiStore
+import com.currency.repository.NetworkRepository
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton

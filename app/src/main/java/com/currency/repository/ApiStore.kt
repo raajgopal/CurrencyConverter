@@ -1,8 +1,8 @@
-package com.currency.respository
+package com.currency.repository
 
 import com.currency.entities.CurrencyValueResponse
 import com.currency.network.service.NetworkClientService
-import com.currency.respository.contract.RepositoryStore
+import com.currency.repository.contract.RepositoryStore
 import io.reactivex.Single
 import javax.inject.Inject
 
