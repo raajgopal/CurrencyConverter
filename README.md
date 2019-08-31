@@ -2,7 +2,7 @@
 This is a simple Android application which is written in Kotlin and Java.
 
 # Screenshots
-![](/screenshots/revolut_app.gif) ![](/screenshots/revolut_demo.gif)
+![](/screenshots/revolut_demo.gif)![](/screenshots/revolut_app.gif)
 
 # Libraries Used
 1) Dagger2
