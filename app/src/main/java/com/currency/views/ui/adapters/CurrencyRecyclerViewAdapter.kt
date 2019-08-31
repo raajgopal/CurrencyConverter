@@ -4,6 +4,7 @@ import android.os.Handler
 import android.os.Looper
 import android.support.v7.widget.RecyclerView
 import android.text.Editable
+import android.text.TextUtils
 import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
@@ -16,6 +17,7 @@ import com.currency.entities.CountryCurrencyInfo
 import com.currency.utils.format
 import com.currency.utils.getCurrencyFlagResId
 import com.currency.utils.getCurrencyNameResId
+import com.currency.utils.toFloat
 import com.currency.views.ui.listeners.OnCurrencyValueChangedListener
 import kotlinx.android.synthetic.main.currency_item.view.*
 import java.util.HashMap
@@ -32,6 +34,7 @@ class CurrencyRecyclerViewAdapter(private val onAmountChangedListener: OnCurrenc
     /**
      * Update the rate of each currency
      */
+    @Synchronized
     fun updateRates(rates: ArrayList<CountryCurrencyInfo>) {
         if (symbolPosition.isEmpty()) {
             symbolPosition.addAll(rates.map { it.symbol })
@@ -47,6 +50,7 @@ class CurrencyRecyclerViewAdapter(private val onAmountChangedListener: OnCurrenc
     /**
      * Update the amount
      */
+    @Synchronized
     fun updateAmount(amount: Float) {
         this.amount = amount
 
@@ -160,22 +164,21 @@ class CurrencyRecyclerViewAdapter(private val onAmountChangedListener: OnCurrenc
 
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
 
-                    if (txtCurrencyAmount.isFocused) {
-                        try {
-                            handler.removeCallbacks(debounceRunnable)
-                            debounceRunnable = Runnable {
+                    if (txtCurrencyAmount.isFocused && !TextUtils.isEmpty(s)) {
+                        handler.removeCallbacks(debounceRunnable)
+                        debounceRunnable = Runnable {
+                            try {
                                 onAmountChangedListener.onCurrencyAmountChanged(
                                     symbol,
                                     s.toString().toFloat()
                                 )
+                            } catch (e: NumberFormatException) {
+                                e.printStackTrace()
                             }
                             handler.postDelayed(debounceRunnable, 500)
-                        } catch (e: NumberFormatException) {
-                            e.printStackTrace()
                         }
                     }
                 }
-
             })
         }
     }
