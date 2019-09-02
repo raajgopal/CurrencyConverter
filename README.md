@@ -11,4 +11,7 @@ This is a simple Android application which is written in Kotlin and Java.
 
 # Architecture Used
 This project is developed using the VIPER architecture which is a part of Clean Architecture
+
+Note: Since this is a single page app without any navigations the Router part is not present.
+
 ![](/screenshots/viper_arch.png)
