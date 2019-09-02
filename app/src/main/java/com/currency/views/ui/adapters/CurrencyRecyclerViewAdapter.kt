@@ -133,9 +133,9 @@ class CurrencyRecyclerViewAdapter(private val onAmountChangedListener: OnCurrenc
 
             txtCurrencyAmount.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
                 //If view lost focus, we do nothing
-//                if (!hasFocus) {
-//                    return@OnFocusChangeListener
-//                }
+                if (!hasFocus) {
+                    return@OnFocusChangeListener
+                }
 
                 //If view is already on top, we do nothing, otherwise...
                 layoutPosition.takeIf { it > 0 }?.also { currentPosition ->
