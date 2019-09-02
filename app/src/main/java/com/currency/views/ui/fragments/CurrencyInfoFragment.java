@@ -76,7 +76,7 @@ public class CurrencyInfoFragment extends Fragment implements CurrencyViewContra
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.currency_info_fragment, container, false);
-        recyclerView = view.findViewById(R.id.recyclerCurrencies);
+        recyclerView = view.findViewById(R.id.currencyRecyclerView);
         progressBar = view.findViewById(R.id.progressView);
         return view;
     }

@@ -2,12 +2,18 @@ package com.currency.utils
 
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
+import java.text.ParseException
 import java.util.*
 
 fun String.toFloat(): Float = if (isNullOrBlank()) {
     0F
 } else {
-    DecimalFormat("0.#", DecimalFormatSymbols.getInstance(Locale.getDefault())).parse(this).toFloat()
+    try {
+
+        DecimalFormat("0.#", DecimalFormatSymbols.getInstance(Locale.getDefault())).parse(this).toFloat()
+    } catch (e: ParseException) {
+        0F
+    }
 }
 
 /**

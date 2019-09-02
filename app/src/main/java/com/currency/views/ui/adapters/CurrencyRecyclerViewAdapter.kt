@@ -133,9 +133,9 @@ class CurrencyRecyclerViewAdapter(private val onAmountChangedListener: OnCurrenc
 
             txtCurrencyAmount.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
                 //If view lost focus, we do nothing
-                if (!hasFocus) {
-                    return@OnFocusChangeListener
-                }
+//                if (!hasFocus) {
+//                    return@OnFocusChangeListener
+//                }
 
                 //If view is already on top, we do nothing, otherwise...
                 layoutPosition.takeIf { it > 0 }?.also { currentPosition ->
@@ -165,18 +165,16 @@ class CurrencyRecyclerViewAdapter(private val onAmountChangedListener: OnCurrenc
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
 
                     if (txtCurrencyAmount.isFocused && !TextUtils.isEmpty(s)) {
+                        val str: String =
+                            if (symbolRate[symbolPosition[position]] != null) symbolRate[symbolPosition[position]]?.symbol!! else ""
                         handler.removeCallbacks(debounceRunnable)
                         debounceRunnable = Runnable {
-                            try {
-                                onAmountChangedListener.onCurrencyAmountChanged(
-                                    symbol,
-                                    s.toString().toFloat()
-                                )
-                            } catch (e: NumberFormatException) {
-                                e.printStackTrace()
-                            }
-                            handler.postDelayed(debounceRunnable, 500)
+                            onAmountChangedListener.onCurrencyAmountChanged(
+                                str,
+                                s.toString().toFloat()
+                            )
                         }
+                        handler.postDelayed(debounceRunnable, 500)
                     }
                 }
             })
